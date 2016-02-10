@@ -1,10 +1,14 @@
 var express = require('express');
-
 var app = express();
+var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
+var fortunes = [
+"Conquer your fears or they will conquer you.", "Rivers need springs.",
+"Do not fear what you don't know.",
+"You will have a pleasant surprise.", "Whenever possible, keep it simple.",
+];
 
 app.set('port', process.env.PORT || 3000);
 
-var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -16,7 +20,8 @@ app.get('/home', function(req, res) {
 })
 
 app.get('/about', function(req, res) {
-  res.render('about');
+  var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+  res.render('about', {fortune: randomFortune});
 })
 
 
