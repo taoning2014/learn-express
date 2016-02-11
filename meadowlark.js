@@ -22,7 +22,10 @@ app.get('/home', function(req, res) {
 })
 
 app.get('/about', function(req, res) {
-  res.render('about', {fortune: fortuneCookie.getFortune()});
+  res.render('about', {
+    fortune: fortuneCookie.getFortune(),
+    pageTestScript: '/qa/tests-about.js'
+  });
 })
 
 
