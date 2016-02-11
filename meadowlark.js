@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
-var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
+var handlebars = require('express3-handlebars').create({
+  defaultLayout: 'main'
+});
 var fortuneCookie = require('./lib/fortune');
 
 app.set('port', process.env.PORT || 3000);
@@ -27,6 +29,14 @@ app.get('/about', function(req, res) {
     pageTestScript: '/qa/tests-about.js'
   });
 })
+
+app.get('/tours/hood-river', function(req, res) {
+  res.render('tours/hood-river');
+});
+
+app.get('/tours/request-group-rate', function(req, res) {
+  res.render('tours/request-group-rate');
+});
 
 
 app.use(function(req, res) {
